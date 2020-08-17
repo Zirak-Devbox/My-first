@@ -1,0 +1,26 @@
+<h1>Edit article</h1>
+
+<% if @article.errors.any?%>
+        <h1>Errors</h1>
+        <% @article.errors.full_messages.each do |msg|%>
+            <%= msg%>
+            <br>
+        <% end %>
+<% end %>
+
+<%= form_with(model: @article, local: true) do |f| %>
+<p>
+    <%=f.label :title%>
+    <%=f.text_field :title%>
+</p>
+<p>
+    <%=f.label :created_on%>
+    <%=f.date_field :created_on%>
+</p> 
+<p>
+    <%=f.submit%>
+</p>
+
+
+<% end %>
+<%= link_to 'Cancel and return to articles listing', articles_path %>
