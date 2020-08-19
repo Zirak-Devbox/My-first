@@ -1,26 +1,32 @@
-<h1>Edit article</h1>
-
-<% if @article.errors.any?%>
-        <h1>Errors</h1>
-        <% @article.errors.full_messages.each do |msg|%>
-            <%= msg%>
-            <br>
-        <% end %>
-<% end %>
-
-<%= form_with(model: @article, local: true) do |f| %>
-<p>
-    <%=f.label :title%>
-    <%=f.text_field :title%>
-</p>
-<p>
-    <%=f.label :created_on%>
-    <%=f.date_field :created_on%>
-</p> 
-<p>
-    <%=f.submit%>
-</p>
 
 
-<% end %>
-<%= link_to 'Cancel and return to articles listing', articles_path %>
+<div class="row justify-content-center">
+  
+  <div class="col-8">
+  <h1 class="text-center">Edit article</h1>
+    <%= render 'shared/errors' %>
+    <%= form_with(model: @article, class:"shadow p-3 mb-5 bg-info rounded", local: true) do |f| %>
+
+      <div class="form-group row"> 
+          <%=f.label :title, class:"col-2 col-form-label"%>
+          <div class="col-8">
+            <%=f.text_field :title, class:"form-control shadow rounded"%>
+          </div>
+        </div>
+        <div class="form-group row"> 
+          <%=f.label :created_on, class:"col-2 col-form-label"%>
+          <div class="col-8">
+            <%=f.date_field :created_on, class:"form-control shadow rounded"%>
+          </div>
+        </div>
+      
+        <div class="form-group row justify-content-center">
+            <%=f.submit class:"btn btn-outline-dark btn-lg"%>
+        </div>
+
+
+    <% end %>
+  
+
+  </div>
+</div>
