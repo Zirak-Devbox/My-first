@@ -1,32 +1,32 @@
 
 
 <div class="row justify-content-center">
-  
   <div class="col-8">
-  <h1 class="text-center">Edit article</h1>
-    <%= render 'shared/errors' %>
-    <%= form_with(model: @article, class:"shadow p-3 mb-5 bg-info rounded", local: true) do |f| %>
-
+    <%=render 'shared/errors',obj: @article%>
+    <%= form_with scope: :article, url: articles_path, class:"shadow p-3 mb-5 bg-info rounded", local: true do |f|%>
+    
       <div class="form-group row"> 
-          <%=f.label :title, class:"col-2 col-form-label"%>
-          <div class="col-8">
-            <%=f.text_field :title, class:"form-control shadow rounded"%>
-          </div>
+        <%=f.label :title, class:"col-2 col-form-label"%>
+        <div class="col-8">
+          <%=f.text_field :title, class:"form-control shadow rounded"%>
         </div>
-        <div class="form-group row"> 
-          <%=f.label :created_on, class:"col-2 col-form-label"%>
-          <div class="col-8">
-            <%=f.date_field :created_on, class:"form-control shadow rounded"%>
-          </div>
+      </div>
+      <div class="form-group row"> 
+        <%=f.label :created_on, class:"col-2 col-form-label"%>
+        <div class="col-8">
+          <%=f.date_field :created_on, class:"form-control shadow rounded"%>
         </div>
-      
-        <div class="form-group row justify-content-center">
-            <%=f.submit class:"btn btn-outline-dark btn-lg"%>
-        </div>
+      </div>
+    
+      <div class="form-group row justify-content-center">
+          <%=f.submit class:"btn btn-outline-dark btn-lg"%>
+      </div>
 
 
     <% end %>
   
 
   </div>
+
+
 </div>
