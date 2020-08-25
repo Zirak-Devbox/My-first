@@ -1,0 +1,40 @@
+<h1 class="text-center mt-4">My App Users</h1>
+<div class="flickr_pagination mb-4 mt-4">
+    <%= will_paginate @articles, :container => false %>
+</div>
+<div class="container">  
+  <% @users.each do |user| %>
+      <div class="row justify-content-md-center">
+        <div class="col-6 mt-4">
+          <div class="card text-center">
+            <div class="card-header">
+               <i><%=link_to user.username, user%></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+              <%= link_to gravatar_for(user, size: 150),user %></h5>
+              <p class=card-text><%= pluralize(user.articles.count, "article")%></p>
+              <%= link_to "View Profile", user, class: "btn btn-outline-success" %>
+              <% if logged_in?%>
+                <% if user==current_user%>
+                  <%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-outline-info" %>
+                <%end%>
+                <% if current_user.admin?%>
+                  <%= link_to "Delete user", user_path(user), class: "btn btn-outline-danger", method: :delete,
+                      data: {confirm: "Are you sure to delete?"}%>
+                <%end%>
+              <%end%>
+            </div>
+            <div class="card-footer text-muted">
+              Joined <%= time_ago_in_words(user.created_at) %> ago
+
+            </div>
+          </div>
+        </div>  
+      </div>
+  <% end %>
+</div> 
+<div class="flickr_pagination mb-4 mt-4">
+    <%= will_paginate @articles, :container => false %>
+</div>
+
